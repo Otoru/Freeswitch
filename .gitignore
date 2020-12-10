@@ -1,0 +1,33 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/ansible,visualstudiocode,chefcookbook
+# Edit at https://www.toptal.com/developers/gitignore?templates=ansible,visualstudiocode,chefcookbook
+
+### Ansible ###
+*.retry
+
+### ChefCookbook ###
+.vagrant
+/cookbooks
+
+# Bundler
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+.kitchen.*.local.yml
+kitchen.local.yml
+kitchen.*.local.yml
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/ansible,visualstudiocode,chefcookbook

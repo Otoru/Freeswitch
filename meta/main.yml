@@ -1,0 +1,16 @@
+galaxy_info:
+  author: otoru
+  description: Freeswitch install
+  license: MIT
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - sip
+    - voip
+    - rtpproxy
+  platforms:
+    - name: Debian
+      versions:
+        - 9
+        - 10
+
+dependencies: []

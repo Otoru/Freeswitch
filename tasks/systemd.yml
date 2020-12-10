@@ -1,0 +1,41 @@
+- name: Create group
+  group:
+    name: freeswitch
+    state: present
+  tags:
+    - systemd
+
+- name: Create user
+  user:
+    name: freeswitch
+    group: freeswitch
+    shell: /usr/sbin/nologin
+    home: /usr/local/freeswitch/
+    system: yes
+  tags:
+    - systemd
+
+- name: Change folders permissions
+  file:
+    path: /usr/local/freeswitch/
+    state: directory
+    recurse: yes
+    owner: freeswitch
+    group: freeswitch
+  tags:
+    - systemd
+
+- name: Add FreeSwitch service file
+  copy:
+    src: freeswitch.service
+    dest: /etc/systemd/system/
+  register: service
+  tags:
+    - systemd
+
+- name: Systemd daemon-reload
+  systemd:
+    daemon_reload: yes
+  when: service.changed
+  tags:
+    - systemd

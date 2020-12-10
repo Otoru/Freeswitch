@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  become: true
+  roles:
+    - role: freeswitch
+      repository: https://github.com/signalwire/freeswitch.git
+      version: v1.10

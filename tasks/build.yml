@@ -1,0 +1,41 @@
+- name: Clone source code
+  git:
+    repo: "{{ repository }}"
+    dest: /usr/src/freeswitch
+    version: "{{ version }}"
+  register: repo
+  notify:
+    - restart freeswitch
+  tags:
+    - build
+
+- name: Run bootstrap
+  shell: ./bootstrap.sh -j
+  args:
+    chdir: /usr/src/freeswitch/
+  when: repo.changed
+  tags:
+    - build
+
+- name: Run configure
+  shell: ./configure
+  args:
+    chdir: /usr/src/freeswitch/
+  when: repo.changed
+  tags:
+    - build
+
+- name: Build source code
+  make:
+    chdir: /usr/src/freeswitch/
+  when: repo.changed
+  tags:
+    - build
+
+- name: Install freeswitch
+  make:
+    target: install
+    chdir: /usr/src/freeswitch/
+  when: repo.changed
+  tags:
+    - build

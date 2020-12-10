@@ -1,0 +1,44 @@
+- name: Install dependencies
+  apt:
+    name: "{{ dependencies }}"
+    update_cache: yes
+    state: latest
+  tags:
+    - install
+
+- name: Add FreeSwitch repository key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: BD3189F5A2B57698
+  tags:
+    - install
+
+- name: Setup repository file
+  apt_repository:
+    repo: "deb http://files.freeswitch.org/repo/deb/debian-release/ {{ ansible_distribution_release }} main"
+    state: present
+    filename: freeswitch
+  tags:
+    - install
+
+- name: Setup source-repository file
+  apt_repository:
+    repo: "deb-src http://files.freeswitch.org/repo/deb/debian-release/ {{ ansible_distribution_release }} main"
+    state: present
+    filename: freeswitch
+  tags:
+    - install
+
+- name: Update repositories after add freeswitch repo
+  apt:
+    update_cache: yes
+  tags:
+    - install
+
+- name: Install dependencies of freeswitch
+  apt:
+    name: freeswitch
+    state: build-dep
+  tags:
+    - install
+    - build

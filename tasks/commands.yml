@@ -1,0 +1,7 @@
+- name: Add freeswitch binaries to system-wide $PATH.
+  file:
+    state: link
+    src: "{{ item }}"
+    dest: "/bin/{{ item | basename }}"
+  with_fileglob:
+    - "/usr/local/freeswitch/bin/*"

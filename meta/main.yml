@@ -6,11 +6,10 @@ galaxy_info:
   galaxy_tags:
     - sip
     - voip
-    - rtpproxy
   platforms:
     - name: Debian
       versions:
-        - 9
-        - 10
+        - buster
+        - stretch
 
 dependencies: []

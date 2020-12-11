@@ -2,6 +2,11 @@
 
 Role used to install freeswitch.
 
+[![Ansible](https://img.shields.io/ansible/role/52294?color=red&logo=ansible&logoColor=white&style=plastic)](https://galaxy.ansible.com/otoru/freeswitch)
+![Quality](https://img.shields.io/ansible/quality/52294?style=plastic)
+![Downloads](https://img.shields.io/ansible/role/d/52294?style=plastic)
+![License](https://img.shields.io/github/license/otoru/Freeswitch?style=plastic)
+
 ## Role Variables
 
 Variables used to control role behavior.

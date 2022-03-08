@@ -4,11 +4,15 @@ After=syslog.target network.target local-fs.target
  
 [Service]
 Type=forking
-PIDFile=/usr/local/freeswitch/run/freeswitch.pid
-ExecStart=/usr/local/freeswitch/bin/freeswitch -u freeswitch -g freeswitch -ncwait -nonat -rp
+PIDFile=/var/run/freeswitch/freeswitch.pid
+ExecStartPre=chown -R freeswitch.freeswitch  /etc/freeswitch
+ExecStartPre=chown -R freeswitch.freeswitch  /var/run/freeswitch
+ExecStartPre=chown -R freeswitch.freeswitch  /var/lib/freeswitch
+ExecStartPre=chown -R freeswitch.freeswitch  /var/log/freeswitch
+ExecStart=/usr/bin/freeswitch -u freeswitch -g freeswitch -ncwait -nonat -rp -log /var/run/freeswitch -conf /etc/freeswitch  -db /var/lib/freeswitch/db -run /var/run/freeswitch -mod /opt/freeswitch/lib/freeswitch/mod
 TimeoutSec=45s
 Restart=on-failure
-WorkingDirectory=/usr/local/freeswitch/bin
+WorkingDirectory=/var/run/freeswitch
 User=root
 Group=daemon
 LimitCORE=infinity

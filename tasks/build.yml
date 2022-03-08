@@ -18,7 +18,7 @@
     - build
 
 - name: Run configure
-  shell: ./configure
+  shell: ./configure --prefix=/opt/freeswitch --with-logfiledir=/var/log/freeswitch --bindir=/bin --sbindir=/sbin --sysconfdir=/etc --localstatedir=/var --enable-64
   args:
     chdir: /usr/src/freeswitch/
   when: repo.changed

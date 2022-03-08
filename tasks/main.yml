@@ -1,9 +1,9 @@
 ---
-- include: debian.yml
-  when: ansible_distribution == 'Debian'
+- include_tasks: debian.yml
+  when: ansible_distribution | lower == 'debian'
 
-- include: build.yml
+- include_tasks: build.yml
 
-- include: systemd.yml
+- include_tasks: systemd.yml
 
-- include: commands.yml
+- include_tasks: commands.yml
